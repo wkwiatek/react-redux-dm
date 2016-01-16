@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 
+let id = 0
+
 class Todo {
   constructor(name = 'Unknown', description = ' - ') {
+    this.id = id++
     this.name = name
     this.description = description
   }
@@ -11,6 +14,7 @@ export class App extends Component {
   displayName = 'App';
 
   todos = [
+    new Todo('Learn React!', 'hype there is'),
     new Todo()
   ];
 
@@ -22,7 +26,9 @@ export class App extends Component {
           <button>{'Add'}</button>
         </form>
         <ul>
-          <li>{this.todos[0].name}{' ('}{this.todos[0].description}{') '}</li>
+          {
+            this.todos.map(todo => <li key={todo.id}>{todo.name}{' ('}{todo.description}{') '}</li>)
+          }
         </ul>
       </div>
     )
