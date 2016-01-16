@@ -1,28 +1,17 @@
-import React, {Component} from 'react'
-
-let id = 0
-
-class Todo {
-  constructor(name = 'Unknown', description = ' - ') {
-    this.id = id++
-    this.name = name
-    this.description = description
-  }
-}
+import React, {Component, PropTypes} from 'react'
 
 export class TodoList extends Component {
   displayName = 'TodoList';
 
-  todos = [
-    new Todo('Learn React!', 'hype there is'),
-    new Todo()
-  ];
+  static propTypes = {
+    todos: PropTypes.arrayOf(PropTypes.object).isRequired
+  };
 
   render() {
     return (
       <ul>
         {
-          this.todos.map(todo => <li key={todo.id}>{todo.name}{' ('}{todo.description}{') '}</li>)
+          this.props.todos.map(todo => <li key={todo.id}>{todo.name}{' ('}{todo.description}{') '}</li>)
         }
       </ul>
     )
