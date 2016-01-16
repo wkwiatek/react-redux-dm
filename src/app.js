@@ -16,24 +16,27 @@ class Todo {
 export class App extends Component {
   displayName = 'App';
 
-  todos = [
-    new Todo('Learn React!', 'hype there is'),
-    new Todo()
-  ];
+  state = {
+    todos: [
+      new Todo('Learn React!', 'hype there is'),
+      new Todo()
+    ]
+  };
 
   onAddTodo = (newTodoName) => {
-    this.todos = [
-      ...this.todos,
-      new Todo(newTodoName)
-    ]
-    console.debug(this.todos)
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        new Todo(newTodoName)
+      ]
+    })
   };
 
   render() {
     return (
       <div>
         <TodoAdd addTodo={this.onAddTodo}/>
-        <TodoList todos={this.todos}/>
+        <TodoList todos={this.state.todos}/>
       </div>
     )
   }
