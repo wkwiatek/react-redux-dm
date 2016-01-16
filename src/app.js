@@ -5,7 +5,15 @@ export class App extends Component {
 
   render() {
     return (
-      <span>{'Hello from React component'}</span>
+      <div>
+        <form>
+          <input type="text"/>
+          <button>Add</button>
+        </form>
+        <ul>
+          <li>First item</li>
+        </ul>
+      </div>
     )
   }
 }
