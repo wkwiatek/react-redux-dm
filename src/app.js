@@ -21,10 +21,18 @@ export class App extends Component {
     new Todo()
   ];
 
+  onAddTodo = (newTodoName) => {
+    this.todos = [
+      ...this.todos,
+      new Todo(newTodoName)
+    ]
+    console.debug(this.todos)
+  };
+
   render() {
     return (
       <div>
-        <TodoAdd/>
+        <TodoAdd addTodo={this.onAddTodo}/>
         <TodoList todos={this.todos}/>
       </div>
     )
