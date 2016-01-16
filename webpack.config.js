@@ -19,10 +19,10 @@ var config = {
 			{test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/}
 		],
 		loaders: [
-			{test: /\.jsx?$/, loader: 'babel', exclude: /node_modules/},
+			{test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},
 			{test: /\.html$/, loader: 'raw'},
 			{test: /\.css$/, loader: 'css'},
-			{test: /\.less$/, loader: 'css!postcss!less'}
+			{test: /\.less$/, loaders: ['css', 'postcss', 'less']}
 		]
 	},
 	postcss: [autoprefixer({browsers: ['ie >= 9', 'last 2 versions']})]
@@ -31,7 +31,6 @@ var config = {
 if (!isProdEnv) {
 	config.devtool = 'source-map';
 	config.plugins = [
-		new webpack.HotModuleReplacementPlugin(),
 		new webpack.DefinePlugin({
 			'NODE_ENV': '"dev"'
 		})
