@@ -12,14 +12,19 @@ class Todo {
 
 function todos(state = [], action) {
   switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        new Todo(action.newTodoName)
-      ]
-    default:
-      return state
+  case 'ADD_TODO':
+    return [
+      ...state,
+      new Todo(action.newTodoName)
+    ]
+  default:
+    return state
   }
 }
 
-export store = createStore(todos)
+export const addTodo = (newTodoName) => ({
+  type: 'ADD_TODO',
+  newTodoName
+})
+
+export const store = createStore(todos)

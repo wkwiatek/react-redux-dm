@@ -3,24 +3,17 @@ import React, {Component} from 'react'
 import {TodoAdd} from './components/TodoAdd'
 import {TodoList} from './components/TodoList'
 
-import {} from './store/store'
+import {addTodo} from './store/store'
 
 export class App extends Component {
   displayName = 'App';
 
-  state = {
-    todos: [
-      new Todo('Learn React!', 'hype there is'),
-      new Todo()
-    ]
-  };
+  state = { todos: this.props.store.getState() };
 
   onAddTodo = (newTodoName) => {
+    this.props.store.dispatch(addTodo(newTodoName))
     this.setState({
-      todos: [
-        ...this.state.todos,
-        new Todo(newTodoName)
-      ]
+      todos: this.props.store.getState()
     })
   };
 
